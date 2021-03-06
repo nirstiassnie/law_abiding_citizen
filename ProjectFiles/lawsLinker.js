@@ -41,7 +41,6 @@ function reduceToOneLaw(potentialLaw, findings, findingsPrev, i){
     // findings is an empty set, find the best match in findingsPrev.
     if(findings.length == 0){
         // i-2 is the character that made the reduction to 0 laws.
-        
         if(isAlephBet(potentialLaw.charAt(i-2)) && potentialLaw.charAt(i-3).localeCompare(' ') != 0){
             // The character that made it not a prefix (i-2) is a letter on the hebrew Alephabet and
             // the letter before is not a space, this is not a valid prefix.
@@ -63,8 +62,9 @@ function reduceToOneLaw(potentialLaw, findings, findingsPrev, i){
             return reduceToOneLaw(potentialLaw, findings, findings, i+1);
         }
 
-        // If the characther that "ruined" the match is an AlephBet letter then there is no match.
-        if(isAlephBet(potentialLaw.charAt(i-1))){
+        // If the characther that "ruined" the match is an AlephBet letter and the letter before it is 
+        // not a space, then there is no match.
+        if(isAlephBet(potentialLaw.charAt(i-1)) && potentialLaw.charAt(i-2).localeCompare(' ') != 0){
             return null;
         }
 
@@ -131,6 +131,7 @@ function addLawTag(i, element, lawDict){
         parentNode.replaceChild(sufTextNode, element);
         parentNode.insertBefore(lawLinkNode, sufTextNode);
         parentNode.insertBefore(preTextNode, lawLinkNode);
+        console.log(`Found law: ${lawDict["OfficialName"].substring(0,lawDict["lawLengthInText"])}, Added Link: ${url}`)
     }
 }
 
@@ -146,7 +147,7 @@ function insideText(element, data){
             // Returns null if there is no such law, dict if there is.
             let lawDict = isLaw(potentialLaw, data);
             if(lawDict){
-                addLawTag(i, element, lawDict);
+                linkAdded = addLawTag(i, element, lawDict);
                 found_laws_counter++;
             }
         }
