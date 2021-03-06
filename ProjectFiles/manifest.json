@@ -6,7 +6,7 @@
     "storage", "<all_urls>"
   ],
   "browser_action": {
-    "default_icon": "scalesLogo.jpg",
+    "default_icon": "scales.png",
     "default_popup": "popup.html"
     },
   "content_scripts": [
