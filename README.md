@@ -1,5 +1,6 @@
 # law_abiding_citizen
 A chrome extension for generating links of Israeli laws on every web page. 
+
 This project is a final project in the "Digital humanities" Course in Ben-Gurion university, the main goal is to make Israeli laws information more accesible by creating a comfortable tool that will find names of laws on any web page and convert them into a link to a formal law library (National Legislative Database or the Open Law Book).
 
 
